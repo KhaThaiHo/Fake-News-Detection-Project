@@ -111,3 +111,96 @@ python -m source.main --quick --dry_run
 ## Saving the model
 
 After training, `source/main.py` saves the model and tokenizer to the directory set by `--save_dir`. A subfolder is created using the `model_name` (slashes `/` are replaced with `_`).
+
+## Project Introduction
+### Problem Statement
+
+The widespread dissemination of fake news and various forms of misinformation has caused serious risks to society, including eroding public trust, increasing political polarization, manipulating elections, and posing particular dangers during pandemics or conflicts. From a Natural Language Processing (NLP) research perspective, identifying fake news remains a challenging task.
+
+Linguistically, fake news often imitates the style and structure of legitimate journalism, making formal features less effective for distinguishing between truth and falsehood. The lack of reliable and up-to-date labeled datasets, especially across different languages and regions, has reduced the effectiveness of supervised learning models. The adaptability and resilience of fake news allow malicious actors to constantly change language and tactics to evade detection systems. Additionally, context, culture, attitudes, and implicit biases contribute to the complexity of analysis.
+
+Moreover, NLP models may amplify training data bias, leading to unfair classifications and censorship of legitimate content. These challenges emphasize the need for cautious, context-aware approaches; if not handled carefully, such systems might unintentionally contribute to the spread of misinformation.
+
+### Dataset
+The dataset consists of two parts:
+
+- MisinfoSuperset_TRUE.csv: A collection of verified and legitimate news articles published by reputable sources such as Reuters, The New York Times, The Washington Post, and others.
+
+- MisinfoSuperset_FAKE.csv: Contains sophisticated fake news excerpts sourced from American right-wing extremist websites (e.g., Redflag Newsdesk, Breitbart, Truth Broadcast Network), and from
+Ahmed, H., Traore, I., & Saad, S. (2017): “Detection of Online Fake News Using N-Gram Analysis and Machine Learning Techniques” (Springer LNCS 10618).
+
+## Implementation Process
+### Data Preprocessing and Analysis
+
+The process includes the following steps:
+
+- Cleaning the data.
+
+- Visualizing the Top 10 most frequent words in each dataset.
+
+### Model Training
+#### Traditional Models
+
+Approaches used:
+
+- TF-IDF Vectorizer
+
+- Logistic Regression
+
+- Support Vector Machine (SVM)
+
+#### Transformer-Based Models
+
+For each Transformer model, the following steps are executed sequentially:
+
+- Tokenization
+
+- Data Loader construction
+
+- Model Building
+
+- Parameter Tuning
+
+- Model Training
+
+- Performance Evaluation
+
+- Inference
+
+Defined classes:
+
+- TextClassificationDataset and DataLoaderBuilder: Standardize and tokenize input data.
+
+- Trainer: Includes the train() function for training, evaluate() for performance evaluation, and predict() for inference on new input.
+
+Models used:
+
+- BERT
+
+- XLNet
+
+- RoBERTa
+
+## Conclusion
+
+In general, both traditional and deep learning-based models can effectively train and predict on the dataset, aiding humans in better recognizing and combating fake news. Models such as BERT, XLNet, and RoBERTa perform almost perfectly on the provided English-language dataset, as they were pre-trained on large English corpora.
+
+However, several challenges remain:
+
+- High computational cost: Although academic platforms like Google Colab and Kaggle provide GPU resources for training, they impose time limits. Otherwise, extensive resources and funding are required for long-term experiments.
+
+- Outdated datasets: Since the dataset may contain old information, real-world predictions might be inaccurate if the model relies on outdated or invalid data.
+
+- Limited domain diversity: The dataset may focus only on specific domains (Politics, Economics, News, etc.) or sources, causing stylistic homogeneity.
+
+- Language constraint: The dataset is in English — an advantage for pre-trained Transformer models — but performance may degrade if applied to Vietnamese or other languages.
+
+Future Work and Recommendations
+
+- Expand and update the dataset regularly using multiple credible news sources to capture diverse journalistic styles.
+
+- Develop and incorporate multilingual datasets.
+
+- Explore additional models such as PhoBERT for Vietnamese text.
+
+- Fine-tune hyperparameters for improved performance.
